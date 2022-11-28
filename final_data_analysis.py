@@ -13,25 +13,6 @@ pd.set_option('mode.chained_assignment',  None)
 def pearson_correlation(a: list, b: list) -> float:
     return np.corrcoef(a,b)[0, 1]
 
-'''
-def calculate_correlation(data):
-    data['2020_GDP'] = data['2020_GDP'].replace(np.nan,0)  #Countries without GDP per capita data in the WorldBank dataset were excluded.
-
-    list1 = []  # for number of participating 
-    list2 = []  # for 2020_GDP
-
-    for i in range(len(data)):       #Put list each data
-        if data['2020_GDP'][i] != 0:            #Countries without GDP per capita data in the WorldBank dataset were excluded.
-                    if data['2020_GDP'][i] != 'nan':
-                        list1.append(float(data['NUM'][i]))                
-                        list2.append(float(data['2020_GDP'][i]))
-
-#    print(list1)
-#    print(list2)
-    print(pearson_correlation(list1, list2))
-
-'''
-
 
 def get_dataset1_analysis(filename1):    #Dataset1 : Participating_Countries/2020,2021 GDP per capita 
     csv = pd.read_csv(filename1)
