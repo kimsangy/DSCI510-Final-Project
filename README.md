@@ -28,4 +28,4 @@ Name:  Correlation between World Cup hosting and participation and GDP(per capit
 
     -2. Run final_data_analysis.py
     
-    -3. Then, Figure1.pdf, Figure2.pdf will be created in same folder with final_data_analysis.py 
+    -3. Then, Figure1.pdf, Figure2.pdf, Analysis result.txt will be created in result folder 

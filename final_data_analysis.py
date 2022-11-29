@@ -10,15 +10,14 @@ pd.options.display.float_format = '{:.5f}'.format
 pd.set_option('mode.chained_assignment',  None)
 
 
+f = open("result\Analysis result.txt", 'w')
+
+
 def pearson_correlation(a: list, b: list) -> float:
     return np.corrcoef(a,b)[0, 1]
 
-
 def get_dataset1_analysis(filename1):    #Dataset1 : Participating_Countries/2020,2021 GDP per capita 
     csv = pd.read_csv(filename1)
-
-
-
 
  #   csv.fillna(0)
     list1_group1_gdp = []   #list for 5 group average gdp
@@ -66,14 +65,14 @@ def get_dataset1_analysis(filename1):    #Dataset1 : Participating_Countries/202
 
 
 
-    print('Analysis1---------------------------------------------------','\n')  
+    print('Analysis1---------------------------------------------------','\n', file = f)  
     #Step1. Group the number of World Cup participations into Group1: 1 time, Group2: 2-5 times, Group3: 6-10 times, Group4: 11-15 times, Group5: 16 times or more.
-    print("Step1. Group the number of World Cup participations into Groups")
-    print('Group1(1 time) :', list1_group1, '\n')       #print list for 5 group team_code
-    print('Group2(2~5 times) :', list2_group2, '\n')
-    print('Group3(6~10 times) :', list3_group3, '\n')
-    print('Group4(11~15 times) :', list4_group4, '\n')   
-    print('Group5(over 16 times) :', list5_group5, '\n')   
+    print("Step1. Group the number of World Cup participations into Groups", file = f)
+    print('Group1(1 time) :', list1_group1, '\n', file = f)       #print list for 5 group team_code
+    print('Group2(2~5 times) :', list2_group2, '\n', file = f)
+    print('Group3(6~10 times) :', list3_group3, '\n', file = f)
+    print('Group4(11~15 times) :', list4_group4, '\n', file = f)   
+    print('Group5(over 16 times) :', list5_group5, '\n', file = f)   
            
     newlist1 = [x for x in list1_group1_gdp if pd.isnull(x) == False] #Countries without GDP per capita data in the WorldBank dataset were excluded.
     newlist2= [x for x in list2_group2_gdp if pd.isnull(x) == False]
@@ -98,30 +97,28 @@ def get_dataset1_analysis(filename1):    #Dataset1 : Participating_Countries/202
 
     #Step2. Calculate the average of 2020 GDP per capita for each group
 
-    print('------','\n')  
-    print("Step2. Calculate the average of 2020 GDP per capita for each group")
+    print('------','\n', file = f)  
+    print("Step2. Calculate the average of 2020 GDP per capita for each group", file = f)
 
-    print('Group1(1 time) :', average_GDP[0], '\n')         #print list for 5 group average gdp
-    print('Group2(2~5 times) :', average_GDP[1], '\n')
-    print('Group3(6~10 times) :', average_GDP[2], '\n')
-    print('Group4(11~15 times) :', average_GDP[3], '\n')   
-    print('Group5(over 16 times) :', average_GDP[4], '\n')   
-    print('------','\n')      
+    print('Group1(1 time) :', average_GDP[0], '\n', file = f)         #print list for 5 group average gdp
+    print('Group2(2~5 times) :', average_GDP[1], '\n', file = f)
+    print('Group3(6~10 times) :', average_GDP[2], '\n', file = f)
+    print('Group4(11~15 times) :', average_GDP[3], '\n', file = f)   
+    print('Group5(over 16 times) :', average_GDP[4], '\n', file = f)   
+    print('------','\n', file = f)      
 
-
-
-    print("Step3. Visualization",'\n')
+    print("Step3. Visualization",'\n', file = f)
 
 
     plt.title("Correlation between the number of World Cup participations and GDP")
     plt.xlabel("Number of_paticipations")    
     plt.ylabel("Average GDP per capita (USD)")
     plt.bar(Num_of_paticipations, average_GDP)
-    plt.savefig('figure1.pdf', dpi=300)
+    plt.savefig('result/figure1.pdf', dpi=300)
  #   plt.show()
 
-    print('------','\n')      
-    print("Step4. Calculate pearson_correlation between the number of World Cup participations and 2020 GDP per capita for each group",'\n')
+    print('------','\n', file = f)      
+    print("Step4. Calculate pearson_correlation between the number of World Cup participations and 2020 GDP per capita for each group",'\n', file = f)
     
     average_NUM_group1 = sum(list1_group1_num)/len(list1_group1_num)        # Average number of participations in Group1 
     average_NUM_group2 = sum(list2_group2_num)/len(list2_group2_num)        # Average number of participations in Group2 
@@ -133,14 +130,14 @@ def get_dataset1_analysis(filename1):    #Dataset1 : Participating_Countries/202
 
 
 
-    print('Average number of participations in Groups : ',average_NUM_GROUPS)
-    print('Average GDP per capita in Groups : ', average_GDP)
-    print('Pearson correlation is : ', pearson_correlation(average_NUM_GROUPS, average_GDP))
+    print('Average number of participations in Groups : ',average_NUM_GROUPS, file = f)
+    print('Average GDP per capita in Groups : ', average_GDP, file = f)
+    print('Pearson correlation is : ', pearson_correlation(average_NUM_GROUPS, average_GDP), file = f)
 
 
 
 
-    print('---------------------------------------------------','\n')  
+    print('---------------------------------------------------','\n', file = f)  
 
 def get_dataset2_analysis(filename1):    #Dataset2 : Host_Countries/ GDP per capita of before and after year  
     csv = pd.read_csv(filename1)
@@ -154,11 +151,13 @@ def get_dataset2_analysis(filename1):    #Dataset2 : Host_Countries/ GDP per cap
     csv.plot(x = 'YEAR(TEAM_CODE)', y =['BEFORE_YEAR_GDP', 'AFTER_YEAR_GDP'], kind="bar", rot =0, figsize = (20,10))
 
 
+    print('Analysis2---------------------------------------------------','\n', file = f)  
+    print("Step1. Visualization",'\n', file = f)
     plt.title("Correlation between World Cup host and GDP per capita")
     plt.xlabel("Host year(Nation)")    
     plt.ylabel("GDP per capita (USD)")
     plt.xticks(rotation=90)
-    plt.savefig('figure2.pdf', dpi=300)
+    plt.savefig('result/figure2.pdf', dpi=300)
 
 
 
@@ -252,24 +251,24 @@ def get_addtional_analysis(filename2, filename3):
 
 
     #Additional Analysis. Comparison of World Average GDP and Host Country GDP
-    print("Additional Analysis. Comparison of World Average GDP and Host Country GDP")
+    print("Step2. Additional Analysis. Comparison of World Average GDP and Host Country GDP",'\n', file = f)  
 
-    print(df2['HOST_YEAR'][6], 'Average GDP is', average_GDP_1962, ',', df2['TEAM_CODE'][6], 'GDP is', df2['HOST_YEAR_GDP'][6] ) 
-    print(df2['HOST_YEAR'][7], 'Average GDP is', average_GDP_1966, ',', df2['TEAM_CODE'][7], 'GDP is', df2['HOST_YEAR_GDP'][7] ) 
-    print(df2['HOST_YEAR'][8], 'Average GDP is', average_GDP_1970, ',', df2['TEAM_CODE'][8], 'GDP is', df2['HOST_YEAR_GDP'][8] ) 
-    print(df2['HOST_YEAR'][9], 'Average GDP is', average_GDP_1974, ',', df2['TEAM_CODE'][9], 'GDP is', df2['HOST_YEAR_GDP'][9] ) 
-    print(df2['HOST_YEAR'][10], 'Average GDP is', average_GDP_1978, ',', df2['TEAM_CODE'][10], 'GDP is', df2['HOST_YEAR_GDP'][10] ) 
-    print(df2['HOST_YEAR'][11], 'Average GDP is', average_GDP_1982, ',', df2['TEAM_CODE'][11], 'GDP is', df2['HOST_YEAR_GDP'][11] ) 
-    print(df2['HOST_YEAR'][12], 'Average GDP is', average_GDP_1986, ',', df2['TEAM_CODE'][12], 'GDP is', df2['HOST_YEAR_GDP'][12] ) 
-    print(df2['HOST_YEAR'][13], 'Average GDP is', average_GDP_1990, ',', df2['TEAM_CODE'][13], 'GDP is', df2['HOST_YEAR_GDP'][13] ) 
-    print(df2['HOST_YEAR'][14], 'Average GDP is', average_GDP_1994, ',', df2['TEAM_CODE'][14], 'GDP is', df2['HOST_YEAR_GDP'][14] ) 
-    print(df2['HOST_YEAR'][15], 'Average GDP is', average_GDP_1998, ',', df2['TEAM_CODE'][15], 'GDP is', df2['HOST_YEAR_GDP'][15] ) 
-    print(df2['HOST_YEAR'][16], 'Average GDP is', average_GDP_2002, ',', df2['TEAM_CODE'][16], 'GDP is', df2['HOST_YEAR_GDP'][16] )
-    print(df2['HOST_YEAR'][17], 'Average GDP is', average_GDP_2002, ',', df2['TEAM_CODE'][17], 'GDP is', df2['HOST_YEAR_GDP'][17] )     
-    print(df2['HOST_YEAR'][18], 'Average GDP is', average_GDP_2006, ',', df2['TEAM_CODE'][18], 'GDP is', df2['HOST_YEAR_GDP'][18] ) 
-    print(df2['HOST_YEAR'][19], 'Average GDP is', average_GDP_2010, ',', df2['TEAM_CODE'][19], 'GDP is', df2['HOST_YEAR_GDP'][19] ) 
-    print(df2['HOST_YEAR'][20], 'Average GDP is', average_GDP_2014, ',', df2['TEAM_CODE'][20], 'GDP is', df2['HOST_YEAR_GDP'][20] ) 
-    print(df2['HOST_YEAR'][21], 'Average GDP is', average_GDP_2018, ',', df2['TEAM_CODE'][21], 'GDP is', df2['HOST_YEAR_GDP'][21] ) 
+    print(df2['HOST_YEAR'][6], 'Average GDP is', average_GDP_1962, ',', df2['TEAM_CODE'][6], 'GDP is', df2['HOST_YEAR_GDP'][6], file = f ) 
+    print(df2['HOST_YEAR'][7], 'Average GDP is', average_GDP_1966, ',', df2['TEAM_CODE'][7], 'GDP is', df2['HOST_YEAR_GDP'][7], file = f ) 
+    print(df2['HOST_YEAR'][8], 'Average GDP is', average_GDP_1970, ',', df2['TEAM_CODE'][8], 'GDP is', df2['HOST_YEAR_GDP'][8], file = f ) 
+    print(df2['HOST_YEAR'][9], 'Average GDP is', average_GDP_1974, ',', df2['TEAM_CODE'][9], 'GDP is', df2['HOST_YEAR_GDP'][9], file = f ) 
+    print(df2['HOST_YEAR'][10], 'Average GDP is', average_GDP_1978, ',', df2['TEAM_CODE'][10], 'GDP is', df2['HOST_YEAR_GDP'][10], file = f ) 
+    print(df2['HOST_YEAR'][11], 'Average GDP is', average_GDP_1982, ',', df2['TEAM_CODE'][11], 'GDP is', df2['HOST_YEAR_GDP'][11], file = f ) 
+    print(df2['HOST_YEAR'][12], 'Average GDP is', average_GDP_1986, ',', df2['TEAM_CODE'][12], 'GDP is', df2['HOST_YEAR_GDP'][12], file = f ) 
+    print(df2['HOST_YEAR'][13], 'Average GDP is', average_GDP_1990, ',', df2['TEAM_CODE'][13], 'GDP is', df2['HOST_YEAR_GDP'][13], file = f ) 
+    print(df2['HOST_YEAR'][14], 'Average GDP is', average_GDP_1994, ',', df2['TEAM_CODE'][14], 'GDP is', df2['HOST_YEAR_GDP'][14], file = f ) 
+    print(df2['HOST_YEAR'][15], 'Average GDP is', average_GDP_1998, ',', df2['TEAM_CODE'][15], 'GDP is', df2['HOST_YEAR_GDP'][15], file = f ) 
+    print(df2['HOST_YEAR'][16], 'Average GDP is', average_GDP_2002, ',', df2['TEAM_CODE'][16], 'GDP is', df2['HOST_YEAR_GDP'][16], file = f )
+    print(df2['HOST_YEAR'][17], 'Average GDP is', average_GDP_2002, ',', df2['TEAM_CODE'][17], 'GDP is', df2['HOST_YEAR_GDP'][17], file = f )     
+    print(df2['HOST_YEAR'][18], 'Average GDP is', average_GDP_2006, ',', df2['TEAM_CODE'][18], 'GDP is', df2['HOST_YEAR_GDP'][18], file = f ) 
+    print(df2['HOST_YEAR'][19], 'Average GDP is', average_GDP_2010, ',', df2['TEAM_CODE'][19], 'GDP is', df2['HOST_YEAR_GDP'][19], file = f ) 
+    print(df2['HOST_YEAR'][20], 'Average GDP is', average_GDP_2014, ',', df2['TEAM_CODE'][20], 'GDP is', df2['HOST_YEAR_GDP'][20], file = f ) 
+    print(df2['HOST_YEAR'][21], 'Average GDP is', average_GDP_2018, ',', df2['TEAM_CODE'][21], 'GDP is', df2['HOST_YEAR_GDP'][21], file = f ) 
 
 
 

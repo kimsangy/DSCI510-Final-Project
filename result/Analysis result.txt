@@ -1,0 +1,61 @@
+Analysis1--------------------------------------------------- 
+
+Step1. Group the number of World Cup participations into Groups
+Group1(1 time) : ['CUB', 'IDN', 'ISR', 'HTI', 'COD', 'KWT', 'CAN', 'IRQ', 'ARE', 'JAM', 'CHN', 'AGO', 'CZE', 'TGO', 'TTO', 'UKR', 'SVK', 'BIH', 'ISL', 'PAN'] 
+
+Group2(2~5 times) : ['BOL', 'PER', 'EGY', 'NOR', 'TUR', 'PRK', 'SLV', 'MAR', 'AUS', 'IRN', 'TUN', 'DZA', 'HND', 'NZL', 'DNK', 'CRI', 'IRL', 'GRC', 'RUS', 'SAU', 'HRV', 'ZAF', 'ECU', 'SEN', 'SVN', 'GHA', 'CIV', 'SRB'] 
+
+Group3(6~10 times) : ['CHL', 'PRY', 'ROU', 'USA', 'AUT', 'HUN', 'NLD', 'POL', 'KOR', 'BGR', 'COL', 'PRT', 'CMR', 'NGA', 'JPN'] 
+
+Group4(11~15 times) : ['BEL', 'FRA', 'URY', 'ESP', 'SWE', 'CHE', 'GBR'] 
+
+Group5(over 16 times) : ['ARG', 'BRA', 'MEX', 'DEU', 'ITA'] 
+
+------ 
+
+Step2. Calculate the average of 2020 GDP per capita for each group
+Group1(1 time) : 16249.70746946656 
+
+Group2(2~5 times) : 17491.525349917643 
+
+Group3(6~10 times) : 22647.432352080028 
+
+Group4(11~15 times) : 43885.77518071477 
+
+Group5(over 16 times) : 20383.979462961415 
+
+------ 
+
+Step3. Visualization 
+
+------ 
+
+Step4. Calculate pearson_correlation between the number of World Cup participations and 2020 GDP per capita for each group 
+
+Average number of participations in Groups :  [1.0, 3.4642857142857144, 7.8, 13.428571428571429, 18.2]
+Average GDP per capita in Groups :  [16249.70746946656, 17491.525349917643, 22647.432352080028, 43885.77518071477, 20383.979462961415]
+Pearson correlation is :  0.48268505334095924
+--------------------------------------------------- 
+
+Analysis2--------------------------------------------------- 
+
+Step1. Visualization 
+
+Step2. Additional Analysis. Comparison of World Average GDP and Host Country GDP 
+
+1962 Average GDP is 513.8673236280949 , CHL GDP is 638.945359978238
+1966 Average GDP is 711.2217324931794 , GBR GDP is 1986.74715869685
+1970 Average GDP is 964.3694052031116 , MEX GDP is 689.79492874498
+1974 Average GDP is 1954.8266119363973 , DEU GDP is 5639.07762129679
+1978 Average GDP is 3067.589237839062 , ARG GDP is 2146.36495899507
+1982 Average GDP is 3851.111531002847 , ESP GDP is 5159.70864500142
+1986 Average GDP is 4162.981214317659 , MEX GDP is 1733.91299341331
+1990 Average GDP is 5768.769313684868 , ITA GDP is 20825.7842228307
+1994 Average GDP is 6252.896744613822 , USA GDP is 27694.853416234
+1998 Average GDP is 7401.283404120158 , FRA GDP is 24974.2738587988
+2002 Average GDP is 8190.868725187216 , JPN GDP is 32820.7936433254
+2002 Average GDP is 8190.868725187216 , KOR GDP is 13165.0657360554
+2006 Average GDP is 12904.730208602403 , DEU GDP is 36353.8803343631
+2010 Average GDP is 14756.554322165945 , ZAF GDP is 8148.9612020223
+2014 Average GDP is 17011.003348661245 , BRA GDP is 12112.8349554875
+2018 Average GDP is 17333.252819534075 , RUS GDP is 11287.3603515625
